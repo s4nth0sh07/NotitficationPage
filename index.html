@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/favicon-32x32.png"
+    />
+    <title>Notifications page</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        background-color: lightcyan;
+      }
+
+      img {
+        height: 50px;
+      }
+      #chessimg {
+        margin: auto;
+      }
+      .container {
+        background-color: whitesmoke;
+        margin: 3rem;
+        border-radius: 0.4rem;
+        padding: 1rem;
+        width: 675px;
+      }
+      .not {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+      }
+      #number {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        color: white;
+        padding: 2px;
+        background-color: blue;
+        margin: 0 0 0 0.5rem;
+        height: 30px;
+        width: 30px;
+        border-radius: 0.3rem;
+      }
+      #readall:hover {
+        color: gray;
+        cursor: pointer;
+      }
+      .unread {
+        background-color: lightblue;
+        border-radius: 0.5rem;
+      }
+      .not_bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 0 0 1.5rem 0;
+      }
+      .not_details {
+        display: flex;
+        flex-direction: column;
+        row-gap: 1rem;
+      }
+      .not_card {
+        display: flex;
+        align-items: center;
+        padding: 1.1rem;
+      }
+      .msg_time {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin: 0 0 0 1rem;
+      }
+      .imt_card {
+        display: flex;
+        align-items: center;
+      }
+      .content {
+        padding: 1rem;
+        border: 1px solid lightblue;
+        border-radius: 0.35rem;
+        margin: 0 0 0 5rem;
+      }
+      .content:hover {
+        background-color: lightblue;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="not_bar">
+        <div class="not">
+          <div class="no_of_not"><h2>Notifications</h2></div>
+          <span id="number"></span>
+        </div>
+        <p id="readall">mark all read</p>
+      </div>
+      <div class="not_details">
+        <div class="not_card unread">
+          <img src="assets/images/avatar-mark-webber.webp" alt="" />
+          <div class="msg_time">
+            <p class="message">
+              <b>Mark Webber </b>reacted to your recent post
+              <strong>My first tournament today!</strong>
+            </p>
+            <p class="time">1m ago</p>
+          </div>
+        </div>
+        <div class="not_card unread">
+          <img src="assets/images/avatar-angela-gray.webp" alt="" />
+          <div class="msg_time">
+            <p class="message"><b>Angela Gray </b>followed you</p>
+            <p class="time">5m ago</p>
+          </div>
+        </div>
+        <div class="not_card unread">
+          <img src="assets/images/avatar-jacob-thompson.webp" alt="" />
+          <div class="msg_time">
+            <p class="message">
+              <b>Jacob Thompson </b>has joined your
+              <strong style="color: blue">Chess club</strong>
+            </p>
+            <p>1 day ago</p>
+          </div>
+        </div>
+        <div>
+          <div class="not_card">
+            <img src="assets/images/avatar-rizky-hasanuddin.webp" alt="" />
+            <div class="msg_time">
+              <p class="message">
+                <b>Rizky Hasanuddin </b>sent you a private message
+              </p>
+              <p class="time">5 days ago</p>
+            </div>
+          </div>
+          <div class="content">
+            Hello, thanks for setting up the Chess Club. I've been a member for
+            a few weeks now and I'm already having lots of fun and improving my
+            game.
+          </div>
+        </div>
+        <div class="not_card">
+          <img src="assets/images/avatar-kimberly-smith.webp" alt="" />
+          <div class="msg_time">
+            <p class="message">
+              <b>Kimberlu Smith </b>commented on your picture
+            </p>
+            <p class="time">1 week ago</p>
+          </div>
+          <img src="assets/images/image-chess.webp" id="chessimg" alt="" />
+        </div>
+        <div class="not_card">
+          <img src="assets/images/avatar-nathan-peterson.webp" alt="" />
+          <div class="msg_time">
+            <p class="message">
+              <b>Nathan Peterson </b>reacted to your recent post
+              <strong>5 end-game strategies to increase your win rate</strong>
+            </p>
+            <p class="time">2 weeks ago</p>
+          </div>
+        </div>
+        <div class="not_card">
+          <img src="assets/images/avatar-anna-kim.webp" alt="" />
+          <div class="msg_time">
+            <p class="message">
+              <b>Anna Kim </b>left the group
+              <strong style="color: blue"> Chess Club</strong>
+            </p>
+            <p class="time">2 weeks ago</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const unreadmessages = document.querySelectorAll(".unread");
+      const readall = document.getElementById("readall");
+      const n = document.getElementById("number");
+      n.innerText = unreadmessages.length;
+
+      unreadmessages.forEach((a) => {
+        a.addEventListener("click", () => {
+          a.classList.remove("unread");
+          const newunreadmessages = document.querySelectorAll(".unread");
+          n.innerText = newunreadmessages.length;
+        });
+      });
+
+      readall.addEventListener("click", () => {
+        unreadmessages.forEach((e) => e.classList.remove("unread"));
+        const newunreadmessages = document.querySelectorAll(".unread");
+        n.innerText = newunreadmessages.length;
+      });
+    </script>
+  </body>
+</html>
